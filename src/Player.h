@@ -9,28 +9,23 @@
 class Player {
 private:
     std::string name;
-    std::map<std::string, int> colorCards;  // Color -> cantidad de cartas
-    int plusTwoCards;                        // Cantidad de cartas +2
-    int score;                               // Puntuación final
+    std::map<std::string, int> colorCards;
+    int plusTwoCards;
+    int score;
     
 public:
-    // Constructor
     Player(const std::string& playerName);
     
-    // Métodos principales
-    void addCard(Card* card);                // Agregar carta recolectada
-    void addCardsFromPile(Card** cards, int size);  // Tomar pila completa
+    void addCard(Card* card);
+    void addCardsFromPile(Card** cards, int size);
     
-    // Cálculo de puntuación
-    int calculateScore();                    // Calcular puntos al final
+    int calculateScore();
     
-    // Getters
     std::string getName() const;
     int getScore() const;
     int getColorCount(const std::string& color) const;
     int getPlusTwoCount() const;
     
-    // Para mostrar
     void displayCards() const;
     void displayScore() const;
 };
