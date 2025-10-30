@@ -1,54 +1,52 @@
 #include <iostream>
 #include "Card.h"
 #include "Pile.h"
+#include "Player.h"
 
 int main() {
-    std::cout << "=== PRUEBA CLASE PILE ===\n\n";
+    std::cout << "=== PRUEBA CLASE PLAYER ===\n\n";
     
-    // Crear algunas cartas
-    Card cartaRoja("Rojo");
-    Card cartaAzul("Azul");
-    Card cartaVerde("Verde");
-    Card cartaMasDos;
+    // Crear jugador
+    Player jugador("Karen");
     
-    // Crear una pila
-    Pile pila;
-    
-    std::cout << "Estado inicial: ";
-    pila.display();
-    std::cout << "\n\n";
-    
-    // Agregar cartas
-    std::cout << "1. Agregando carta Roja...\n";
-    pila.addCard(&cartaRoja);
-    pila.display();
-    std::cout << "\n\n";
-    
-    std::cout << "2. Agregando carta Azul...\n";
-    pila.addCard(&cartaAzul);
-    pila.display();
-    std::cout << "\n\n";
-    
-    std::cout << "3. Agregando carta Verde...\n";
-    pila.addCard(&cartaVerde);
-    pila.display();
-    std::cout << "\n\n";
-    
-    // Intentar agregar cuarta carta (debe dar advertencia)
-    std::cout << "4. Intentando agregar +2 a pila llena...\n";
-    pila.addCard(&cartaMasDos);
+    std::cout << "Estado inicial:\n";
+    jugador.displayCards();
     std::cout << "\n";
     
-    // Marcar como tomada
-    std::cout << "5. Marcando pila como tomada...\n";
-    pila.markAsTaken();
-    pila.display();
-    std::cout << "\n\n";
+    // Crear algunas cartas
+    Card rojo1("Rojo"), rojo2("Rojo"), rojo3("Rojo");
+    Card azul1("Azul"), azul2("Azul");
+    Card verde1("Verde");
+    Card masDos1, masDos2;
     
-    // Intentar agregar a pila tomada (debe dar advertencia)
-    std::cout << "6. Intentando agregar carta a pila tomada...\n";
-    Card otraCarta("Amarillo");
-    pila.addCard(&otraCarta);
+    // Simular que el jugador toma cartas
+    std::cout << "Agregando cartas al jugador...\n";
+    jugador.addCard(&rojo1);
+    jugador.addCard(&rojo2);
+    jugador.addCard(&rojo3);
+    jugador.addCard(&azul1);
+    jugador.addCard(&azul2);
+    jugador.addCard(&verde1);
+    jugador.addCard(&masDos1);
+    jugador.addCard(&masDos2);
+    
+    // Mostrar cartas recolectadas
+    jugador.displayCards();
+    std::cout << "\n";
+    
+    // Calcular puntuación
+    std::cout << "Calculando puntuacion...\n";
+    jugador.calculateScore();
+    jugador.displayScore();
+    std::cout << "\n";
+    
+    // Explicación de puntos
+    std::cout << "Explicacion:\n";
+    std::cout << "- Rojo (3 cartas): +6 puntos\n";
+    std::cout << "- Azul (2 cartas): +3 puntos\n";
+    std::cout << "- Verde (1 carta): -1 punto (4to color, resta)\n";
+    std::cout << "- +2 (2 cartas): +4 puntos\n";
+    std::cout << "Total: 6+3-1+4 = 12 puntos\n";
     
     return 0;
 }
