@@ -2,51 +2,44 @@
 #include "Card.h"
 #include "Pile.h"
 #include "Player.h"
+#include "Deck.h"
+#include "FileManager.h"
 
 int main() {
-    std::cout << "=== PRUEBA CLASE PLAYER ===\n\n";
+    std::cout << "=== PRUEBA DECK Y FILEMANAGER ===\n\n";
     
-    // Crear jugador
-    Player jugador("Karen");
+    // Prueba 1: Crear deck para 3 jugadores
+    std::cout << "1. Creando mazo para 3 jugadores...\n";
+    Deck deck(3);
+    std::cout << "Cartas en el mazo: " << deck.getRemainingCards() << "\n\n";
     
-    std::cout << "Estado inicial:\n";
-    jugador.displayCards();
-    std::cout << "\n";
+    // Prueba 2: Robar algunas cartas
+    std::cout << "2. Robando 5 cartas:\n";
+    for (int i = 0; i < 5; i++) {
+        Card* card = deck.drawCard();
+        if (card) {
+            std::cout << "  Carta " << (i+1) << ": " << card->toString() << "\n";
+        }
+    }
+    std::cout << "Cartas restantes: " << deck.getRemainingCards() << "\n\n";
     
-    // Crear algunas cartas
-    Card rojo1("Rojo"), rojo2("Rojo"), rojo3("Rojo");
-    Card azul1("Azul"), azul2("Azul");
-    Card verde1("Verde");
-    Card masDos1, masDos2;
+    // Prueba 3: FileManager
+    std::cout << "3. Probando FileManager...\n";
+    FileManager fm;
     
-    // Simular que el jugador toma cartas
-    std::cout << "Agregando cartas al jugador...\n";
-    jugador.addCard(&rojo1);
-    jugador.addCard(&rojo2);
-    jugador.addCard(&rojo3);
-    jugador.addCard(&azul1);
-    jugador.addCard(&azul2);
-    jugador.addCard(&verde1);
-    jugador.addCard(&masDos1);
-    jugador.addCard(&masDos2);
+    std::cout << "Validando nombres de archivo:\n";
+    std::cout << "  'partida1' es valido? " << (FileManager::isValidFilename("partida1") ? "Si" : "No") << "\n";
+    std::cout << "  'partida/2' es valido? " << (FileManager::isValidFilename("partida/2") ? "Si" : "No") << "\n\n";
     
-    // Mostrar cartas recolectadas
-    jugador.displayCards();
-    std::cout << "\n";
-    
-    // Calcular puntuación
-    std::cout << "Calculando puntuacion...\n";
-    jugador.calculateScore();
-    jugador.displayScore();
-    std::cout << "\n";
-    
-    // Explicación de puntos
-    std::cout << "Explicacion:\n";
-    std::cout << "- Rojo (3 cartas): +6 puntos\n";
-    std::cout << "- Azul (2 cartas): +3 puntos\n";
-    std::cout << "- Verde (1 carta): -1 punto (4to color, resta)\n";
-    std::cout << "- +2 (2 cartas): +4 puntos\n";
-    std::cout << "Total: 6+3-1+4 = 12 puntos\n";
+    std::cout << "Partidas guardadas:\n";
+    auto games = fm.listSavedGames();
+    if (games.empty()) {
+        std::cout << "  No hay partidas guardadas aun.\n";
+    } else {
+        for (const auto& game : games) {
+            std::cout << "  - " << game << "\n";
+        }
+    }
     
     return 0;
 }
