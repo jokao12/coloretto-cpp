@@ -110,54 +110,8 @@ coloreto.exe
 ---
 
 ## 🧱 Diagrama UML (Resumen)
+<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/89fef297-1f95-42f0-91be-1404286764a0" />
 
-```
-+----------------+
-|     Card       |
-+----------------+
-| type : string  |
-| color : string |
-| value : int    |
-+----------------+
-
-        ▲
-        |
-        |
-+----------------+
-|     Deck       |
-+----------------+
-| cards : Card*  |
-| total : int    |
-+----------------+
-| shuffle()      |
-| draw() : Card  |
-+----------------+
-
-+----------------+
-|    Player      |
-+----------------+
-| name : string  |
-| hand : Card*   |
-| score : int    |
-+----------------+
-| addCard(Card)  |
-| calcScore()    |
-| save/load()    |
-+----------------+
-
-+----------------+
-|     Game       |
-+----------------+
-| players : Player*  |
-| deck : Deck        |
-| piles : vector<Card>|
-| round : int        |
-+----------------+
-| start()           |
-| playLoop()        |
-| saveGame()/load() |
-| endGame()          |
-+----------------+
 ```
 
 ---
