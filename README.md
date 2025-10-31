@@ -94,16 +94,11 @@ Durante el juego puedes:
 
 ## ⚙️ Compilación
 
-Desde la carpeta raíz del proyecto:
+En Consola:
 
 ```bash
-g++ -std=c++17 src/*.cpp -o coloreto
-```
 
-En Windows:
-
-```bash
-g++ -std=c++17 src/*.cpp -o coloreto.exe
+g++ src/main.cpp src/Card.cpp src/Pile.cpp src/Player.cpp src/Deck.cpp src/FileManager.cpp src/Game.cpp -o coloretto.exe -std=c++17
 coloreto.exe
 ```
 
